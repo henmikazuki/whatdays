@@ -1,4 +1,5 @@
-const url = 'https://ja.wikipedia.org/w/api.php?format=json&utf8&action=query&prop=revisions&rvprop=content&titles=1%E6%9C%881%E6%97%A5'
+let url = 'https://ja.wikipedia.org/w/api.php?';
+url += 'format=json&utf8&action=query&prop=revisions&rvprop=content&titles=1月1日';
 $(function() {
   $('#btn').on('click', function() {
     $.ajax({
