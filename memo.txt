@@ -1,0 +1,2 @@
+<!-- 以下で1月1日の情報取得可能 -->
+https://ja.wikipedia.org/w/api.php?format=json&utf8&action=query&prop=revisions&rvprop=content&titles=1%E6%9C%881%E6%97%A5
