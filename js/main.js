@@ -6,7 +6,7 @@ $(function() {
       url: url,
       dataType: 'jsonp',
     }).done(function(data) {
-      if (data.results) {
+      if (data.query) {
         console.log(data);
       } else {
         alert('データが見つかりませんでした');
