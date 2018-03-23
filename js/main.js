@@ -2,10 +2,16 @@
 let url = 'https://ja.wikipedia.org/w/api.php?';
 url += 'format=json&utf8&action=query&prop=revisions&rvprop=content&titles=1月1日';
 */
+
 $(function() {
   $('#btn').on('click', function() {
     let url = 'https://ja.wikipedia.org/w/api.php?';
-    url += 'format=json&utf8&action=query&prop=revisions&rvprop=content&titles=1月1日';
+    url += 'format=json';
+    url += '&utf8';
+    url += '&action=query';
+    url += '&prop=revisions';
+    url += '&rvprop=content';
+    url += '&titles=1月1日';
     $.ajax({
       url: url,
       dataType: 'jsonp',
