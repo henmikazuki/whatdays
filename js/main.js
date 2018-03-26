@@ -29,6 +29,6 @@ $(function() {
 });
 
 function setData(data) {
-  let result = data;
+  let result = '<p>' + JSON.stringify(data) + '</p>';
   $('#show').html(result);
 }
