@@ -24,7 +24,7 @@ $(function() {
     url += '&rvprop=content';
     switch (document.select.month.value) {
       case 2:
-        if (document.select.day.value > 29) {
+        if (document.select.day.value < 29) {
           error();
           break;
         }
@@ -37,7 +37,7 @@ $(function() {
           break;
         }
       default:
-      url += '&titles=' + document.select.month.value + '月' + document.select.day.value + '日';
+        url += '&titles=' + document.select.month.value + '月' + document.select.day.value + '日';
     }
     $.ajax({
       url: url,
