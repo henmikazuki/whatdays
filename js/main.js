@@ -16,6 +16,7 @@ $(function() {
     selectDay.appendChild(day);
   }
   $('#btn').on('click', function() {
+    var pageid = [];
     let url = 'https://ja.wikipedia.org/w/api.php?';
     url += 'format=json';
     url += '&utf8';
@@ -44,7 +45,10 @@ $(function() {
       dataType: 'jsonp',
     }).done(function(data) {
       if (data.query) {
-        setData(data);
+        for( var id in data.query.pages ) {
+          pageid.push( id );
+        }
+        setData(data, pageid);
       } else {
         alert('データが見つかりませんでした');
       }
@@ -54,8 +58,15 @@ $(function() {
   });
 });
 
-function setData(data) {
-  let result = '<p>' + JSON.stringify(data) + '</p>';
+function setData(data, pageid) {
+  let parseString = JSON.stringify(data);
+  let parse = JSON.parse(parseString);
+  var content = data.query.pages[ pageid[0] ].revisions[0]["*"];  // キー*の値は["*"]で取り出す
+  var dekigoto = content.match(/== できごと ==[\s\S]*== 誕生日 ==/);  // 改行文字を含む文字列には [\s\S]* を使う
+
+  article = dekigoto[0].match(/\*.+\n/g);  // *の前に\が必要
+
+  let result = '<p>' + article + '</p>';
   $('#show').html(result);
 }
 
