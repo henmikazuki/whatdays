@@ -1,8 +1,3 @@
-/*
-let url = 'https://ja.wikipedia.org/w/api.php?';
-url += 'format=json&utf8&action=query&prop=revisions&rvprop=content&titles=1月1日';
-*/
-
 $(function() {
   const selectMonth = document.getElementById('month');
   const selectDay = document.getElementById('day');
@@ -27,14 +22,29 @@ $(function() {
     url += '&action=query';
     url += '&prop=revisions';
     url += '&rvprop=content';
-    url += '&titles=' + document.selectDay.month.value + '月' + document.selectDay.day.value + '日';
+    switch (document.select.month.value) {
+      case 2:
+        if (document.select.day.value > 29) {
+          error();
+          break;
+        }
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        if (document.select.day.value === 31) {
+          error();
+          break;
+        }
+      default:
+      url += '&titles=' + document.select.month.value + '月' + document.select.day.value + '日';
+    }
     $.ajax({
       url: url,
       dataType: 'jsonp',
     }).done(function(data) {
       if (data.query) {
         setData(data);
-//        console.log(data);
       } else {
         alert('データが見つかりませんでした');
       }
@@ -47,4 +57,8 @@ $(function() {
 function setData(data) {
   let result = '<p>' + JSON.stringify(data) + '</p>';
   $('#show').html(result);
+}
+
+function error() {
+  alert('日付は月の範囲内で選んでください。');
 }
