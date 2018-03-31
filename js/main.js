@@ -67,7 +67,7 @@ function setData(data, pageid) {
   article = dekigoto[0].match(/\*.+\n/g);  // *の前に\が必要
 
   let result = '<p>' + article + '</p>';
-  $('#show').html(result);
+  $('#show').html(result.replace(/\r?\n/g, '<br>').replace(/\*/g, '').replace(/\,/g, '').replace(/\[/g, ''). replace(/\]/g, ''));
 }
 
 function error() {
